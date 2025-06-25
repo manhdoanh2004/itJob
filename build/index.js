@@ -17,7 +17,7 @@ const port = 4000;
 (0, database_1.connectDB)();
 // Cấu hình CORS
 app.use((0, cors_1.default)({
-    origin: "http://localhost:3000",
+    origin: "https://itjov-fe.onrender.com",
     methods: ["GET", "POST", "PATCH", "DELETE"],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true // Cho phép gửi cookie
