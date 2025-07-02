@@ -22,7 +22,8 @@ const authCheck = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!token) {
             res.json({
                 code: "error",
-                message: "Token không hợp lệ!"
+                message: "Token không hợp lệ!",
+                case: "Không tồn tại token"
             });
             return;
         }
@@ -79,7 +80,8 @@ const authCheck = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.clearCookie("token");
             res.json({
                 code: "error",
-                message: "Token không hợp lệ!"
+                message: "Token không hợp lệ!",
+                case: "Không tìm thấy thông tin nhà tuyển dụng hoặc thông tin ứng viên"
             });
         }
     }
@@ -87,7 +89,8 @@ const authCheck = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.clearCookie("token");
         res.json({
             code: "error",
-            message: "Token không hợp lệ!"
+            message: "Token không hợp lệ!",
+            case: "Lỗi sever"
         });
     }
 });

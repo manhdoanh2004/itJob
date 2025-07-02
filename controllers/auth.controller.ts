@@ -10,7 +10,8 @@ export const authCheck=async(req:Request,res:Response)=>
     if(!token) {
       res.json({
         code: "error",
-        message: "Token không hợp lệ!"
+        message: "Token không hợp lệ!",
+         case:"Không tồn tại token"
       });
       return;
     }
@@ -78,14 +79,16 @@ export const authCheck=async(req:Request,res:Response)=>
       res.clearCookie("token");
       res.json({
         code: "error",
-        message: "Token không hợp lệ!"
+        message: "Token không hợp lệ!",
+        case:"Không tìm thấy thông tin nhà tuyển dụng hoặc thông tin ứng viên"
       });
     }
   } catch (error) {
     res.clearCookie("token");
     res.json({
       code: "error",
-      message: "Token không hợp lệ!"
+      message: "Token không hợp lệ!",
+       case:"Lỗi sever"
     });
   }
 
