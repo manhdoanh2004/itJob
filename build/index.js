@@ -19,13 +19,14 @@ const port = 4000;
 var whitelist = ["http://localhost:3000", "https://itjov-fe.onrender.com"];
 var corsOptions = {
     origin: function (origin, callback) {
-        if (whitelist.indexOf(origin) !== -1) {
+        if (!origin || whitelist.indexOf(origin) !== -1) {
             callback(null, true);
         }
         else {
             callback(new Error('Not allowed by CORS'));
         }
     },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true // Cho phép gửi cookie
 };
