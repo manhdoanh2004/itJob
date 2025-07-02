@@ -25,6 +25,8 @@ var corsOptions = {
       callback(new Error('Not allowed by CORS'))
     }
   },
+app.use(cors({
+  origin: "https://itjov-fe.onrender.com",
   methods: ["GET", "POST", "PATCH", "DELETE"],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true // Cho phép gửi cookie
