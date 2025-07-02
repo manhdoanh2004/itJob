@@ -26,6 +26,8 @@ var corsOptions = {
             callback(new Error('Not allowed by CORS'));
         }
     },
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true // Cho phép gửi cookie
 };
 app.use((0, cors_1.default)(corsOptions));
 // app.use(cors({
