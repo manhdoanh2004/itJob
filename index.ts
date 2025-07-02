@@ -17,7 +17,7 @@ connectDB();
 
 // Cấu hình CORS
 var whitelist = ["http://localhost:3000",  "https://itjov-fe.onrender.com"];
-var corsOptions = {
+var corsOptions:any = {
   origin: function (origin:any, callback:any) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
@@ -25,11 +25,6 @@ var corsOptions = {
       callback(new Error('Not allowed by CORS'))
     }
   },
-app.use(cors({
-  origin: "https://itjov-fe.onrender.com",
-  methods: ["GET", "POST", "PATCH", "DELETE"],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true // Cho phép gửi cookie
 }
 
 app.use(cors(corsOptions));
