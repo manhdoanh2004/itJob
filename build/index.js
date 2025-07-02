@@ -16,12 +16,27 @@ const port = 4000;
 //Kết nối database
 (0, database_1.connectDB)();
 // Cấu hình CORS
-app.use((0, cors_1.default)({
-    origin: "http://localhost:3000",
+var whitelist = ["http://localhost:3000", "https://itjov-fe.onrender.com"];
+var corsOptions = {
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ["GET", "POST", "PATCH", "DELETE"],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true // Cho phép gửi cookie
-}));
+};
+app.use((0, cors_1.default)(corsOptions));
+// app.use(cors({
+//   origin: "http://localhost:3000",
+//   methods: ["GET", "POST", "PATCH", "DELETE"],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true // Cho phép gửi cookie
+// }));
 //Cho phép gửi data lên dạng json
 app.use(express_1.default.json());
 //Cấu hình lấy cookies
