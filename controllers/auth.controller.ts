@@ -92,7 +92,7 @@ export const authCheck=async(req:Request,res:Response)=>
         httpOnly: true,
         secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
         sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
-        
+        path:"/"
         });
 
     res.json({
@@ -109,7 +109,7 @@ export const logout = async (req: Request, res: Response) => {
    httpOnly: true,
    secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
    sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
-   
+   path:"/" // cho phép token hoạt động trên toàn bộ domain
   });
   res.json({
     code: "success",
