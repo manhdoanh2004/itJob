@@ -2,8 +2,8 @@ import {Router} from "express";
 import * as authController from "../../controllers/auth.controller";
 const router=Router();
 
-router.get("/check",authController.authCheck);
-router.get('/logout', authController.logout);
+router.post("/check",authController.authCheck);
+router.delete('/logout', authController.logout);
 
 
 

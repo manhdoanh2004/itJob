@@ -76,7 +76,11 @@ export const authCheck=async(req:Request,res:Response)=>
   
 
     if(!existAccountUser&&!existAccountCompany ) {
-      res.clearCookie("token");
+     res.clearCookie("token", {
+        httpOnly: true,
+        secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
+        sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
+      });
       res.json({
         code: "error",
         message: "Token không hợp lệ!",
@@ -84,7 +88,13 @@ export const authCheck=async(req:Request,res:Response)=>
       });
     }
   } catch (error) {
-    res.clearCookie("token");
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
+        sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
+        
+        });
+
     res.json({
       code: "error",
       message: "Token không hợp lệ!",
@@ -95,7 +105,12 @@ export const authCheck=async(req:Request,res:Response)=>
 }
 
 export const logout = async (req: Request, res: Response) => {
-  res.clearCookie("token");
+  res.clearCookie("token", {
+   httpOnly: true,
+   secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
+   sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
+   
+  });
   res.json({
     code: "success",
     message: "Đã đăng xuất!"

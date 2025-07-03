@@ -36,6 +36,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const authController = __importStar(require("../../controllers/auth.controller"));
 const router = (0, express_1.Router)();
-router.get("/check", authController.authCheck);
-router.get('/logout', authController.logout);
+router.post("/check", authController.authCheck);
+router.delete('/logout', authController.logout);
 exports.default = router;
