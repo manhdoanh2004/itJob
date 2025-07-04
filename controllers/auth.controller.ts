@@ -78,8 +78,10 @@ export const authCheck=async(req:Request,res:Response)=>
     if(!existAccountUser&&!existAccountCompany ) {
      res.clearCookie("token", {
         httpOnly: true,
-        secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
-        sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
+      //  secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
+        secure:true, //False:http, true:https
+        sameSite:"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
+      //  sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
       });
       res.json({
         code: "error",
@@ -90,8 +92,10 @@ export const authCheck=async(req:Request,res:Response)=>
   } catch (error) {
     res.clearCookie("token", {
         httpOnly: true,
-        secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
-        sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
+        //secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
+        secure:true, //False:http, true:https
+        //sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
+        sameSite: "none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
         path:"/"
         });
 
@@ -107,8 +111,10 @@ export const authCheck=async(req:Request,res:Response)=>
 export const logout = async (req: Request, res: Response) => {
   res.clearCookie("token", {
    httpOnly: true,
-   secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
-   sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
+   //secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
+   secure:true, //False:http, true:https
+   //sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
+   sameSite:"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
    path:"/" // cho phép token hoạt động trên toàn bộ domain
   });
   res.json({
