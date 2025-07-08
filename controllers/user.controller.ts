@@ -101,14 +101,14 @@ export const loginPost=async(req:Request,res:Response)=>
       path:"/"
    });
 
-   res.cookie("isLogin", "1", {
-     maxAge:  24 * 60 * 60 * 1000, //Token có hiệu lưu 1 ngày,
-     httpOnly: false, //chỉ có sever mới được gửi token lên
-     secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
+  //  res.cookie("isLogin", "1", {
+  //    maxAge:  24 * 60 * 60 * 1000, //Token có hiệu lưu 1 ngày,
+  //    httpOnly: false, //chỉ có sever mới được gửi token lên
+  //    secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
   
-     sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
-      path:"/"
-   });
+  //    sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
+  //     path:"/"
+  //  });
  
    res.json({
      code: "success",
