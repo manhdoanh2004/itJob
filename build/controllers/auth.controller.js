@@ -78,7 +78,7 @@ const authCheck = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         if (!existAccountUser && !existAccountCompany) {
             res.clearCookie("token", {
-                httpOnly: false,
+                httpOnly: true,
                 secure: `${process.env.SECURE_ENV}` == "true" ? true : false, //False:http, true:https
                 sameSite: `${process.env.SAMESITE_VALUE}` == "lax" ? "lax" : "none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
             });
@@ -91,7 +91,7 @@ const authCheck = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     catch (error) {
         res.clearCookie("token", {
-            httpOnly: false,
+            httpOnly: true,
             secure: `${process.env.SECURE_ENV}` == "true" ? true : false, //False:http, true:https
             sameSite: `${process.env.SAMESITE_VALUE}` == "lax" ? "lax" : "none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
             path: "/"
@@ -106,7 +106,7 @@ const authCheck = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.authCheck = authCheck;
 const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.clearCookie("token", {
-        httpOnly: false,
+        httpOnly: true,
         secure: `${process.env.SECURE_ENV}` == "true" ? true : false, //False:http, true:https
         sameSite: `${process.env.SAMESITE_VALUE}` == "lax" ? "lax" : "none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
         path: "/" // cho phép token hoạt động trên toàn bộ domain
