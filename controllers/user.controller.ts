@@ -94,10 +94,10 @@ export const loginPost=async(req:Request,res:Response)=>
    //lưu token vào cookies
    res.cookie("token", token, {
      maxAge:  24 * 60 * 60 * 1000, //Token có hiệu lưu 1 ngày,
-     httpOnly: true, //chỉ có sever mới được gửi token lên
-    // secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
-     secure:true, //False:http, true:https
-     sameSite: "none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
+     httpOnly: false, //chỉ có sever mới được gửi token lên
+     secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
+  
+     sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
       path:"/"
    });
  
