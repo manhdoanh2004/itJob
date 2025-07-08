@@ -174,7 +174,7 @@ export const listJob=async(req:AccountRequest,res:Response)=>
   };
 
   // Phân trang
-  const limitItems = 2;
+  const limitItems = 6;
   let page = 1;
   if(req.query.page) {
     const currentPage = parseInt(`${req.query.page}`);
@@ -333,7 +333,7 @@ export const companyList=async(req:Request,res:Response)=>
 
      const find = {};
 
-  let limitItems = 2;
+  let limitItems = 6;
   if(req.query.limitItems) {
     limitItems = parseInt(`${req.query.limitItems}`);
   }
@@ -486,20 +486,15 @@ export const listCv=async(req:AccountRequest,res:Response)=>
 {
   try {
     const companyId=req.account.id;
-
- 
-
- 
-
-  const listJob= await Job.find({
-    companyId:companyId
-  });
+    const listJob= await Job.find({
+      companyId:companyId
+    });
 
   const listJobId=listJob.map((item)=>item.id);
 
 
    // Phân trang
-  const limitItems = 2;
+  const limitItems = 6;
   let page = 1;
   if(req.query.page) {
     const currentPage = parseInt(`${req.query.page}`);

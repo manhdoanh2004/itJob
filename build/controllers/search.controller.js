@@ -74,7 +74,7 @@ const searchResult = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         }
         //End Working from
         // Phân trang
-        const limitItems = 2;
+        const limitItems = 6;
         let page = 1;
         if (req.query.page) {
             const currentPage = parseInt(`${req.query.page}`);

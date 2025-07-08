@@ -143,7 +143,7 @@ const listJob = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         companyId: req.account.id
     };
     // Phân trang
-    const limitItems = 2;
+    const limitItems = 6;
     let page = 1;
     if (req.query.page) {
         const currentPage = parseInt(`${req.query.page}`);
@@ -269,7 +269,7 @@ const deleteJobDel = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 exports.deleteJobDel = deleteJobDel;
 const companyList = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const find = {};
-    let limitItems = 2;
+    let limitItems = 6;
     if (req.query.limitItems) {
         limitItems = parseInt(`${req.query.limitItems}`);
     }
@@ -396,7 +396,7 @@ const listCv = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
         const listJobId = listJob.map((item) => item.id);
         // Phân trang
-        const limitItems = 2;
+        const limitItems = 6;
         let page = 1;
         if (req.query.page) {
             const currentPage = parseInt(`${req.query.page}`);

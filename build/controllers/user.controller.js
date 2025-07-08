@@ -19,6 +19,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const account_company_model_1 = __importDefault(require("../models/account-company.model"));
 const cv_model_1 = __importDefault(require("../models/cv.model"));
 const job_model_1 = __importDefault(require("../models/job.model"));
+const moment_1 = __importDefault(require("moment"));
 const registerPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { fullName, email, passWord } = req.body;
@@ -88,13 +89,6 @@ const loginPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         sameSite: `${process.env.SAMESITE_VALUE}` == "lax" ? "lax" : "none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
         path: "/"
     });
-    //  res.cookie("isLogin", "1", {
-    //    maxAge:  24 * 60 * 60 * 1000, //Token có hiệu lưu 1 ngày,
-    //    httpOnly: false, //chỉ có sever mới được gửi token lên
-    //    secure:`${process.env.SECURE_ENV}`=="true"?true:false, //False:http, true:https
-    //    sameSite: `${process.env.SAMESITE_VALUE}`=="lax"?"lax":"none", // lax :cho phép gửi cookies giữa các domain khác nhau ở localhost, none :cho phép gửi cookies giữa các domain khác nhau cross-origin
-    //     path:"/"
-    //  });
     res.json({
         code: "success",
         message: "Đăng nhập thành công !",
@@ -130,7 +124,7 @@ const listCV = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         userId: userId
     };
     // Phân trang
-    const limitItems = 2;
+    const limitItems = 6;
     let page = 1;
     if (req.query.page) {
         const currentPage = parseInt(`${req.query.page}`);
@@ -163,7 +157,9 @@ const listCV = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             jobPosition: "",
             jobWorkingForm: "",
             status: item.status,
-            companyLogo: ""
+            companyLogo: "",
+            fileCV: item.fileCV,
+            createdAtFormat: (0, moment_1.default)(item.createdAt).format("DD-MM-YYYY HH:mm")
         };
         const infoJob = yield job_model_1.default.findOne({
             _id: item.jobId
